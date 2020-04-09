@@ -50,7 +50,7 @@ namespace Wechat.Api.Aop
                 await this.next(context);
                 ms.Position = 0;
                 var respContentType = context.Response.ContentType;
-                if (respContentType.Contains("application/json"))
+                if (respContentType?.Contains("application/json")??false)
                 {
                     using (var responseReader = new StreamReader(ms, Encoding.UTF8, true, 4096, true))
                     {

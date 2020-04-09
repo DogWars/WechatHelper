@@ -19,5 +19,6 @@ namespace Wechat.Api.Beans.Friends
 
         public int CurrentChatRoomContactSeq { get; set; }
 
+
     }
 }

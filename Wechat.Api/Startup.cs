@@ -12,8 +12,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Wechat.Api;
 using Wechat.Api.Aop;
+using Wechat.Api.Extensions;
 using Wechat.Protocol;
 using Wechat.Util.Cache;
+using WeChat.Api.Errors;
 
 namespace Wechat.Api
 {
@@ -71,7 +73,14 @@ namespace Wechat.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            //app.UseStatusCodePages(async ctx=> {
+            //    var err = Error<bool>.New().WithCode(ctx.HttpContext.Response.StatusCode).WithMessage("");
+            //    ctx.HttpContext.Response.ContentType = "application/json";
+            //    await ctx.HttpContext.Response.BodyWriter.WriteAsync(
+            //err.ToJsonString())
+            //});
             app.UseBodyDump();
+            app.UseStatusCodePages();
             app.UseCors(builder => builder
                  .AllowAnyOrigin()
                  .AllowAnyMethod()
